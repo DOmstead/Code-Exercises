@@ -1,0 +1,85 @@
+//This function efficiently finds the max sum path of a triangle
+function maxSumPathEfficient(numBlock){
+    for(i = numBlock. length - 2; i >= 0; i-- ){
+      for(j = 0; j< numBlock[i].length; j++){
+        //Pick the greater of the two numbers below and add it to numBlock[i][j]
+        numBlock[i][j] += Math.max(numBlock[i +1][j], numBlock[i +1][j + 1])
+      }
+    }
+    return numBlock[0][0]
+  }
+
+
+
+function maxSumPathAllPaths(numBlock){
+
+//This function will use a brute force method to check all paths in a triangle to find the max sum 
+  let maxSum = 0;
+  let currentSum = 0;
+  let numTries = 0;
+  let numRows = numBlock.length;
+  let complete = false;
+
+  let currentIndex = [];
+  //Runs once at the beginning to establish an array that can be used as an index.
+  for (i=0; i<numBlock.length; i++) {
+    currentIndex[i] = 0;
+  }
+  
+  while (! complete) {
+    console.log('currentSum = ' + currentSum + ' maxSum = ' + maxSum + ' currentIndex = ' + currentIndex + ' numTries = ' + numTries);
+
+    //Zero sum for each try
+    currentSum = 0;
+    
+    // Do a try;
+    for (i=0; i<numRows; i++) {
+      currentSum += numBlock[i][currentIndex[i]];
+    }  
+    //Check if greater
+    if (currentSum > maxSum){
+      maxSum = currentSum
+    }
+    //Increment numTries
+    numTries++;
+    // this try is complete.
+    
+  
+    // Set ourselves up for the next try.
+    for (i=numRows - 1; i>=0; i--) {
+      if (currentIndex[i] == currentIndex[i-1]) {
+        //This section triggers when values need to be reset for left most path
+        currentIndex[i]++
+        for(j = i + 1; j <= numRows - 1; j++){
+          currentIndex[j] = currentIndex[i];
+        }
+
+        break;
+      }
+      
+      if (i == 0 ){
+          // we're done
+          complete = true;
+        }
+    }
+  }
+  return maxSum
+}
+
+let exampleTriangle = [
+    [75],
+    [95, 64],
+    [17, 47, 82],
+    [18, 35, 87, 10],
+    [20, 04, 82, 47, 65],
+    [19, 01, 23, 75, 03, 34],
+    [88, 02, 77, 73, 07, 63, 67],
+    [99, 65, 04, 28, 06, 16, 70, 92],
+    [41, 41, 26, 56, 83, 40, 80, 70, 33],
+    [41, 48, 72, 33, 47, 32, 37, 16, 94, 29],
+    [53, 71, 44, 65, 25, 43, 91, 52, 97, 51, 14],
+    [70, 11, 33, 28, 77, 73, 17, 78, 39, 68, 17, 57],
+    [91, 71, 52, 38, 17, 14, 91, 43, 58, 50, 27, 29, 48],
+    [63, 66, 04, 68, 89, 53, 67, 30, 73, 16, 69, 87, 40, 31],
+    [04, 62, 98, 27, 23, 09, 70, 98, 73, 93, 38, 53, 60, 04, 23]
+    ]
