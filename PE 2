@@ -1,0 +1,12 @@
+//Euler Prob 2. Getting the sum of even numbers in the fib sequence below 4 Million.
+function Prob2Sum() {
+  var sumArray2 = [];
+  var fibSequence = [0, 1];
+  for (let index = 1; fibSequence[index] < 4000000; index++) {
+    fibSequence.push(fibSequence[index] + (fibSequence[index - 1]));
+    if (Number.isInteger(fibSequence[index + 1] / 2) === true) {
+      sumArray2.push(fibSequence[index + 1]);
+    }
+  }
+  return sumArray2.reduce((a, b) => a + b, 0);
+}
