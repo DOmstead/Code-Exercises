@@ -1,0 +1,26 @@
+//Problem 4. Palidromes
+function Palindrome() {
+    // Two sections. First needs to move through the numbers. 
+    // Second needs to check to see if they are palindromes
+    var largestPalindrome = [];
+    var largestPalindromeNum = 0;
+    for (let y = 1; y < 1000; y++) {
+      for (let x = 1; x < 1000; x++) {
+        let xYValue = x * y;
+        let xYArray = Array.from(String(xYValue));
+        for (let a = 0, b = xYArray.length - 1; a < xYArray.length; a++, b--) {
+          if (xYArray[a] === xYArray[b]) {
+            if (a + 1 === xYArray.length) {
+              largestPalindrome = [x, y];
+              if (largestPalindromeNum < x * y) {
+                largestPalindromeNum = x * y;
+              }
+            }
+          }
+          else {
+            break;
+          }
+        }
+      }
+    }
+  }
