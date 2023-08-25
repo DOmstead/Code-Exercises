@@ -1,0 +1,13 @@
+//Project Euler Problem 1. 
+function Prob1Sum() {
+  var sumArray = [];
+  for (let index = 0; index < 1000; index++) {
+    var opt1 = index / 3;
+    var opt2 = index / 5;
+    if (Number.isInteger(opt1) === true || Number.isInteger(opt2) === true) {
+      sumArray.push(index);
+    }
+
+  }
+  return sumArray.reduce((a, b) => a + b, 0);
+}
