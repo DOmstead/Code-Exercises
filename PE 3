@@ -1,0 +1,16 @@
+//Problem 3. Prime Factors
+function efficientPrime3(n) {
+  var divisor = 2;
+  var solutionPrimeArr = [];
+
+  while (n >= 2) {
+    if (n % divisor === 0) {
+      solutionPrimeArr.push(divisor);
+      n = n / divisor;
+    }
+    else {
+      divisor++;
+    }
+  }
+  return solutionPrimeArr;
+}
