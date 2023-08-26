@@ -1,0 +1,42 @@
+function finalPrimeEfficient(desiredPrime) {
+  let desiredPrimeValue = 0
+  let primeArray = [2]
+  for (let i = 3; primeArray.length <= desiredPrime; i += 2) {
+    //Test for if number is prime. If so update currentPrimeCount by 1
+    for (let n = 0, s = Math.sqrt(i) + 1; ; n++) {
+      if (n >= primeArray.length || n >= s) {
+        primeArray.push(i)
+        break;
+      }
+      if (i % primeArray[n] == 0 && i != n) {
+        //Not a prime number
+        break;
+      }
+    }
+    if (desiredPrime === primeArray.length) {
+      desiredPrimeValue = i
+      break;
+    }
+  }
+  return desiredPrimeValue;
+}
+
+//Restructured as a while loop
+function finalPrimeWhile(desiredPrime) {
+    let primeArray = [2];
+    while (primeArray.length < desiredPrime) {
+      for (let i = 3; primeArray.length <= desiredPrime; i += 2) {
+        for (let n = 0, s = Math.sqrt(i) + 1; ; n++) {
+          if (n >= primeArray.length || n >= s) {
+            primeArray.push(i)
+            break;
+          }
+          if (i % primeArray[n] == 0 && i != n) {
+            //Not a prime number
+            break;
+          }
+        }
+      }
+    }
+    return primeArray[desiredPrime - 1]
+  }
