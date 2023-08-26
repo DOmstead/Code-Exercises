@@ -1,0 +1,19 @@
+//Project Euler Problem 6
+//Difference between sum of squares and squared sums
+function sumSquareDiff() {
+  let intMax = 100;
+  let sumOfSquares = 0;
+  let squareOfSums = 0;
+  let sumDiff = 0;
+
+  for (let i = 0; i <= intMax; i++) {
+    sumOfSquares += i ** 2;
+  }
+  for (let i = 1; i <= intMax; i++) {
+    squareOfSums += i;
+  }
+  squareOfSums = squareOfSums ** 2;
+  sumDiff = squareOfSums - sumOfSquares;
+  
+  return sumDiff;
+}
