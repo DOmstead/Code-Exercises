@@ -1,0 +1,35 @@
+//Project Euler Prob 5. 
+//If a later number can be divided without a remainder by an earlier number
+//the earlier ones don't need to be checked. 
+//The number can be incremented up by two because no odd number will ever match because it 
+//has to be divisible by an even number.  
+function smallFryCorrected() {
+  let smallNumber;
+  let currentNumber = 1;
+  while (smallNumber === undefined) {
+    if (Number.isInteger(currentNumber / 11)) {
+      if (Number.isInteger(currentNumber / 12)) {
+        if (Number.isInteger(currentNumber / 13)) {
+          if (Number.isInteger(currentNumber / 14)) {
+            if (Number.isInteger(currentNumber / 15)) {
+              if (Number.isInteger(currentNumber / 16)) {
+                if (Number.isInteger(currentNumber / 17)) {
+                  if (Number.isInteger(currentNumber / 18)) {
+                    if (Number.isInteger(currentNumber / 19)) {
+                      if (Number.isInteger(currentNumber / 20)) {
+                        smallNumber = currentNumber;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    currentNumber += 1;
+    //smallNumber = currentNumber;
+  }
+  return smallNumber;
+}
