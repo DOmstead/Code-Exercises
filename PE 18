@@ -12,15 +12,14 @@ function maxSumPathEfficient(numBlock){
 
 
 function maxSumPathAllPaths(numBlock){
-
 //This function will use a brute force method to check all paths in a triangle to find the max sum 
   let maxSum = 0;
   let currentSum = 0;
   let numTries = 0;
   let numRows = numBlock.length;
   let complete = false;
-
   let currentIndex = [];
+
   //Runs once at the beginning to establish an array that can be used as an index.
   for (i=0; i<numBlock.length; i++) {
     currentIndex[i] = 0;
@@ -28,37 +27,33 @@ function maxSumPathAllPaths(numBlock){
   
   while (! complete) {
     console.log('currentSum = ' + currentSum + ' maxSum = ' + maxSum + ' currentIndex = ' + currentIndex + ' numTries = ' + numTries);
-
-    //Zero sum for each try
+    //Resets currentSum for each loop
     currentSum = 0;
-    
-    // Do a try;
+    // Runs one complete path
     for (i=0; i<numRows; i++) {
       currentSum += numBlock[i][currentIndex[i]];
     }  
-    //Check if greater
+    //Check if currentSum is greater than maxSum
     if (currentSum > maxSum){
       maxSum = currentSum
     }
-    //Increment numTries
-    numTries++;
-    // this try is complete.
+    //Incremint numTries
+    numTries++;    
+    // At this time this path is complete.
     
-  
-    // Set ourselves up for the next try.
+    // Set ourselves up for the next path.
     for (i=numRows - 1; i>=0; i--) {
       if (currentIndex[i] == currentIndex[i-1]) {
-        //This section triggers when values need to be reset for left most path
+        //This section triggers when values need to be reset for the left most path
         currentIndex[i]++
         for(j = i + 1; j <= numRows - 1; j++){
           currentIndex[j] = currentIndex[i];
         }
-
         break;
       }
       
       if (i == 0 ){
-          // we're done
+          // All paths have been completed.
           complete = true;
         }
     }

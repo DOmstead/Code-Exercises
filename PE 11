@@ -1,0 +1,51 @@
+//Each number is checked one time, running four calculations and potentially updating the max value before moving on to the next number. 
+
+function scalableStarBurstCalc(numGridArray, digitsDesired) {
+  let currentMax = 0;
+
+  for (i = 0; i < numGridArray.length; i++) {
+    for (j = 0; j < numGridArray[i].length; j++) {
+      //East Calculation
+      if (j < numGridArray[i].length - (digitsDesired - 1)) {
+        let potentialMaxValue = 1;
+        for (t = 0; t < digitsDesired; t++){
+          potentialMaxValue *= numGridArray[i][j + t]
+          if (potentialMaxValue > currentMax) {
+            currentMax = potentialMaxValue;
+          }
+        }
+      }
+      //South East Calculation  
+      if (j < numGridArray[i].length - (digitsDesired - 1) && i < numGridArray.length - (digitsDesired - 1)) {
+        let potentialMaxValue = 1
+        for (t = 0; t < digitsDesired; t++){
+          potentialMaxValue *= numGridArray[i + t][j + t]
+          if ( potentialMaxValue > currentMax){
+            currentMax = potentialMaxValue
+          }
+        }
+      }
+      //South Calculation
+      if (i < numGridArray.length - (digitsDesired - 1)) {
+        let potentialMaxValue = 1;      
+        for(t = 0; t < digitsDesired; t++){
+          potentialMaxValue *= numGridArray[i + t][j]
+          if( potentialMaxValue > currentMax){
+            currentMax = potentialMaxValue;
+          }
+        }
+      }
+      //SouthWest Calculation
+      if (j >= (digitsDesired - 1) && i < numGridArray.length - (digitsDesired - 1)) {
+        let potentialMaxValue = 1;
+        for(t = 0; t < digitsDesired; t++){
+          potentialMaxValue *= numGridArray[i + t][j - t];
+          if(potentialMaxValue > currentMax){
+            currentMax = potentialMaxValue;
+          }
+        }
+      }
+    }
+  }
+  return currentMax
+}
