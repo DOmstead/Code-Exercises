@@ -1,0 +1,28 @@
+/* eslint-disable eqeqeq */
+
+var fs = require('fs');
+
+const names = fs.readFileSync('./PE_22_Names.txt','utf8').replace(/"/g,'');
+
+function nameProdAlg(names){
+
+  let namesArr = [];
+  let namesArrSum = 0;
+  let letterArr = [0,'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+  
+  namesArr = names.split(',').sort();
+
+  //i value represents the name. j represents the letter. t represents the letter checked against letterArr
+  for (let i = 0; i < namesArr.length; i++){
+    console.log('namesArrSum is ' + namesArrSum);
+    let nameSum = 0; 
+    for (let j = 0; j < namesArr[i].length; j++ ){
+      nameSum += letterArr.indexOf(namesArr[i][j]);
+    }
+    nameSum *= (i +1);
+    namesArrSum += nameSum;
+  }
+  return namesArrSum;
+}
+
+console.log(nameProdAlg(names));
